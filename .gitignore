@@ -3,3 +3,4 @@ dist/
 coverage/
 *.sarif
 .env
+.claude/settings.local.json
