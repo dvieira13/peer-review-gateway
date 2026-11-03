@@ -18,7 +18,7 @@ cat > Agent_environment.md <<'EOF'
 ## 2. Operational mode
 | Item | Value |
 |---|---|
-| Permission mode | `default` (approve actions interactively; allow and deny rules from `.claude/settings.json`). Test 1 and Test 2 ran in `default` for all file writes and commands. A switch to `auto` is recorded at the very end of the Test 2 session, after the last tool call. The later AI-log backfill session ran in `auto` mode. Verified from the `permissionMode` fields in the transcripts in `ai-history/`. The reason for the switch is unknown; I don't recall changing it manually. |
+| Permission mode | `default` (approve actions interactively; allow and deny rules from `.claude/settings.json`). Test 1 and Test 2 ran in `default` for all file writes and commands. A switch to `auto` is recorded at the very end of the Test 2 session, after the last tool call. The later AI-log backfill session (documentation edits only, not part of the code experiment) recorded both modes: 6 `default` records and 8 `auto` records. Verified from the `permissionMode` fields in the transcripts in `ai-history/`. The reason for the switch is unknown; I don't recall changing it manually. |
 | Interactive vs headless | Interactive session (`claude`) |
 | Allowed tools | Read, Edit, Write, Bash(npm run typecheck), Bash(npm test), Bash(npm run build), Bash(git status), Bash(git diff:*), Bash(git log:*) |
 | Denied actions | Bash(git commit:*), Bash(git push:*), Bash(rm -rf:*), Bash(sudo:*), Bash(curl:*), Read(./.env) |
