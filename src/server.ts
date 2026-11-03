@@ -1,7 +1,7 @@
 /**
- * AI Contribution Weight: [90%] AI Generated / [10%] Human Refactored
+ * AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
  * File: src/server.ts - process entry point
- * AI tool: <fill in: Claude Code / model / date>
+ * AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
  */
 import { createApp } from './app';
 

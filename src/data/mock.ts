@@ -1,7 +1,7 @@
 /**
- * AI Contribution Weight: [90%] AI Generated / [10%] Human Refactored
+ * AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
  * File: src/data/mock.ts - static mock data (no external services; see spec.md section 9)
- * AI tool: <fill in: Claude Code / model / date>
+ * AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
  */
 export interface Criterion {
   id: string;

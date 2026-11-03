@@ -1,4 +1,6 @@
-# AI Contribution Weight: [90%] AI Generated / [10%] Human Refactored
+# AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
+# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
+# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
 # DevSecOps pipeline: build/test -> Docker build -> Trivy (deps + image) -> Semgrep -> SonarQube.
 # All security scanners are NON-BLOCKING in Assignment 1 (continue-on-error / exit-code 0).
 #

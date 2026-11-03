@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:1
-# AI Contribution Weight: [90%] AI Generated / [10%] Human Refactored
+# AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
+# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
+# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
 # Multi-stage build: deps -> build -> prod-deps -> runtime (non-root, minimal)
 # TODO(hardening): pin base image by digest (node:22-alpine@sha256:...)
 

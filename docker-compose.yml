@@ -1,4 +1,6 @@
-# AI Contribution Weight: [90%] AI Generated / [10%] Human Refactored
+# AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
+# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
+# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
 # Single-tenant stack for Domain 3 (no cross-service communication).
 # The credentials below are LOCAL DEV ONLY placeholders.
 services:
