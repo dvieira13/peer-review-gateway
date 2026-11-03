@@ -167,6 +167,8 @@ jobs:
         if: env.SONAR_TOKEN != ''
         continue-on-error: true
         uses: SonarSource/sonarqube-scan-action@v7
+        with:
+          args: -Dsonar.scanner.skipJreProvisioning=true
       - name: Skipped notice
         if: env.SONAR_TOKEN == ''
         run: echo "::notice::SONAR_TOKEN not set - add it as a repository secret (gh secret set SONAR_TOKEN)."
