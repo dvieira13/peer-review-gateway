@@ -1,0 +1,1098 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/sarif-2.1/schema/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2026-102276",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "brace-expansion: brace-expansion: Denial of Service via stack exhaustion from crafted brace patterns"
+              },
+              "fullDescription": {
+                "text": "The brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.19, 2.1.5, 3.0.7, and 5.0.10, crafted brace patterns can exhaust the native stack in parseCommaParts because parseCommaParts recursively processes the remainder once per brace group and uses push.apply to pass every element of a very large comma-part array as a function argument. Patterns containing many comma-separated brace groups trigger the recursive path, while the large array triggers the argument-array path without deep recursion. These paths cause recursive and argument-array native stack exhaustion before max or maxLength can limit output, potentially terminating the Node.js process in a process-terminating denial of service. This issue is fixed in versions 1.1.19, 2.1.5, 3.0.7, and 5.0.10."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-102276",
+              "help": {
+                "text": "Vulnerability CVE-2026-102276\nSeverity: HIGH\nPackage: brace-expansion\nFixed Version: 5.0.10, 3.0.7, 2.1.5, 1.1.19\nLink: [CVE-2026-102276](https://avd.aquasec.com/nvd/cve-2026-102276)\nThe brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.19, 2.1.5, 3.0.7, and 5.0.10, crafted brace patterns can exhaust the native stack in parseCommaParts because parseCommaParts recursively processes the remainder once per brace group and uses push.apply to pass every element of a very large comma-part array as a function argument. Patterns containing many comma-separated brace groups trigger the recursive path, while the large array triggers the argument-array path without deep recursion. These paths cause recursive and argument-array native stack exhaustion before max or maxLength can limit output, potentially terminating the Node.js process in a process-terminating denial of service. This issue is fixed in versions 1.1.19, 2.1.5, 3.0.7, and 5.0.10.",
+                "markdown": "**Vulnerability CVE-2026-102276**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|brace-expansion|5.0.10, 3.0.7, 2.1.5, 1.1.19|[CVE-2026-102276](https://avd.aquasec.com/nvd/cve-2026-102276)|\n\nThe brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.19, 2.1.5, 3.0.7, and 5.0.10, crafted brace patterns can exhaust the native stack in parseCommaParts because parseCommaParts recursively processes the remainder once per brace group and uses push.apply to pass every element of a very large comma-part array as a function argument. Patterns containing many comma-separated brace groups trigger the recursive path, while the large array triggers the argument-array path without deep recursion. These paths cause recursive and argument-array native stack exhaustion before max or maxLength can limit output, potentially terminating the Node.js process in a process-terminating denial of service. This issue is fixed in versions 1.1.19, 2.1.5, 3.0.7, and 5.0.10."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-102278",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "brace-expansion: brace-expansion: Denial of Service via uncontrolled recursion in nested brace patterns"
+              },
+              "fullDescription": {
+                "text": "The brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.20, 2.1.6, 3.0.8, and 5.0.11, deeply nested brace groups cause expand_() to recurse once per nesting level at comma-member and single-set expansion sites, exhausting the native stack before output limits can apply and potentially terminating the Node.js process. expand_ performs uncontrolled recursion for nested brace alternatives and single-part sets. deeply nested brace groups supplied as an untrusted pattern. expand_ is affected. expand is affected. Comma members is affected. Single set is affected. native stack exhaustion during nested sub-expansion. process-terminating denial of service. This issue is fixed in versions 1.1.20, 2.1.6, 3.0.8, and 5.0.11."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-102278",
+              "help": {
+                "text": "Vulnerability CVE-2026-102278\nSeverity: HIGH\nPackage: brace-expansion\nFixed Version: 5.0.11, 3.0.8, 2.1.6, 1.1.20\nLink: [CVE-2026-102278](https://avd.aquasec.com/nvd/cve-2026-102278)\nThe brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.20, 2.1.6, 3.0.8, and 5.0.11, deeply nested brace groups cause expand_() to recurse once per nesting level at comma-member and single-set expansion sites, exhausting the native stack before output limits can apply and potentially terminating the Node.js process. expand_ performs uncontrolled recursion for nested brace alternatives and single-part sets. deeply nested brace groups supplied as an untrusted pattern. expand_ is affected. expand is affected. Comma members is affected. Single set is affected. native stack exhaustion during nested sub-expansion. process-terminating denial of service. This issue is fixed in versions 1.1.20, 2.1.6, 3.0.8, and 5.0.11.",
+                "markdown": "**Vulnerability CVE-2026-102278**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|brace-expansion|5.0.11, 3.0.8, 2.1.6, 1.1.20|[CVE-2026-102278](https://avd.aquasec.com/nvd/cve-2026-102278)|\n\nThe brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.20, 2.1.6, 3.0.8, and 5.0.11, deeply nested brace groups cause expand_() to recurse once per nesting level at comma-member and single-set expansion sites, exhausting the native stack before output limits can apply and potentially terminating the Node.js process. expand_ performs uncontrolled recursion for nested brace alternatives and single-part sets. deeply nested brace groups supplied as an untrusted pattern. expand_ is affected. expand is affected. Comma members is affected. Single set is affected. native stack exhaustion during nested sub-expansion. process-terminating denial of service. This issue is fixed in versions 1.1.20, 2.1.6, 3.0.8, and 5.0.11."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-102277",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "brace-expansion: brace-expansion: Denial of Service via crafted brace patterns"
+              },
+              "fullDescription": {
+                "text": "The brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.21, 2.1.7, 3.0.9, and 5.0.12, the expand function handles untrusted {a},b}-shaped patterns with many trailing closing braces by restarting its scan once for each trailing closing brace. The successive full-input rescans with linear working-string growth cause quadratic CPU time and memory pressure that can block the Node.js event loop. The process eventually recovers, making the impact a recoverable CPU denial of service. This issue is fixed in versions 1.1.21, 2.1.7, 3.0.9, and 5.0.12."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-102277",
+              "help": {
+                "text": "Vulnerability CVE-2026-102277\nSeverity: MEDIUM\nPackage: brace-expansion\nFixed Version: 5.0.12, 3.0.9, 2.1.7, 1.1.21\nLink: [CVE-2026-102277](https://avd.aquasec.com/nvd/cve-2026-102277)\nThe brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.21, 2.1.7, 3.0.9, and 5.0.12, the expand function handles untrusted {a},b}-shaped patterns with many trailing closing braces by restarting its scan once for each trailing closing brace. The successive full-input rescans with linear working-string growth cause quadratic CPU time and memory pressure that can block the Node.js event loop. The process eventually recovers, making the impact a recoverable CPU denial of service. This issue is fixed in versions 1.1.21, 2.1.7, 3.0.9, and 5.0.12.",
+                "markdown": "**Vulnerability CVE-2026-102277**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|brace-expansion|5.0.12, 3.0.9, 2.1.7, 1.1.21|[CVE-2026-102277](https://avd.aquasec.com/nvd/cve-2026-102277)|\n\nThe brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to 1.1.21, 2.1.7, 3.0.9, and 5.0.12, the expand function handles untrusted {a},b}-shaped patterns with many trailing closing braces by restarting its scan once for each trailing closing brace. The successive full-input rescans with linear working-string growth cause quadratic CPU time and memory pressure that can block the Node.js event loop. The process eventually recovers, making the impact a recoverable CPU denial of service. This issue is fixed in versions 1.1.21, 2.1.7, 3.0.9, and 5.0.12."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.3,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-118773",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "glob: glob: Denial of Service (DoS) via incomplete traversal cancellation"
+              },
+              "fullDescription": {
+                "text": "Glob matches files using patterns the shell uses. From 9.0.0 until 14.0.2, abort branches in src/walker.ts, including GlobUtil.walkCB(), GlobUtil.walkCB2(), GlobUtil.walkCBSync(), and GlobUtil.walkCB2Sync(), invoke the callbacks without returning. After AbortSignal or AbortSignal.timeout() rejects or emits an error, execution can continue into processor.processPatterns(), readdirCB(), and recursive traversal. The issue affects glob() and globStream() when applications expose attacker-influenced patterns or directory trees and rely on cancellation as a traversal budget. Repeated timed-out requests can stack background filesystem operations and CPU work, degrading worker throughput or service availability; no confidentiality or integrity impact was observed. This issue is fixed in 14.0.2."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-118773",
+              "help": {
+                "text": "Vulnerability CVE-2026-118773\nSeverity: MEDIUM\nPackage: glob\nFixed Version: 14.0.2\nLink: [CVE-2026-118773](https://avd.aquasec.com/nvd/cve-2026-118773)\nGlob matches files using patterns the shell uses. From 9.0.0 until 14.0.2, abort branches in src/walker.ts, including GlobUtil.walkCB(), GlobUtil.walkCB2(), GlobUtil.walkCBSync(), and GlobUtil.walkCB2Sync(), invoke the callbacks without returning. After AbortSignal or AbortSignal.timeout() rejects or emits an error, execution can continue into processor.processPatterns(), readdirCB(), and recursive traversal. The issue affects glob() and globStream() when applications expose attacker-influenced patterns or directory trees and rely on cancellation as a traversal budget. Repeated timed-out requests can stack background filesystem operations and CPU work, degrading worker throughput or service availability; no confidentiality or integrity impact was observed. This issue is fixed in 14.0.2.",
+                "markdown": "**Vulnerability CVE-2026-118773**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|glob|14.0.2|[CVE-2026-118773](https://avd.aquasec.com/nvd/cve-2026-118773)|\n\nGlob matches files using patterns the shell uses. From 9.0.0 until 14.0.2, abort branches in src/walker.ts, including GlobUtil.walkCB(), GlobUtil.walkCB2(), GlobUtil.walkCBSync(), and GlobUtil.walkCB2Sync(), invoke the callbacks without returning. After AbortSignal or AbortSignal.timeout() rejects or emits an error, execution can continue into processor.processPatterns(), readdirCB(), and recursive traversal. The issue affects glob() and globStream() when applications expose attacker-influenced patterns or directory trees and rely on cancellation as a traversal budget. Repeated timed-out requests can stack background filesystem operations and CPU work, degrading worker throughput or service availability; no confidentiality or integrity impact was observed. This issue is fixed in 14.0.2."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.3,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-101910",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ip-address: ip-address: Security boundary bypass via unclassified NAT64 local-use address range"
+              },
+              "fullDescription": {
+                "text": "ip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. From 10.2.0 until 10.5.1, the Address6 isPrivate classifier in src/ipv6.ts does not recognize the NAT64 local-use range 64:ff9b:1::/48. Applications that combine isPrivate, isLoopback, and isLinkLocal for a trust-boundary decision can treat an internal IPv4 destination encoded through that range as external. Exploitation depends on a server network using an operator-selected NAT64 prefix within the local-use range. A successful bypass can cross the intended network trust boundary. This issue is fixed in version 10.5.1."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-101910",
+              "help": {
+                "text": "Vulnerability CVE-2026-101910\nSeverity: MEDIUM\nPackage: ip-address\nFixed Version: 10.5.1\nLink: [CVE-2026-101910](https://avd.aquasec.com/nvd/cve-2026-101910)\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. From 10.2.0 until 10.5.1, the Address6 isPrivate classifier in src/ipv6.ts does not recognize the NAT64 local-use range 64:ff9b:1::/48. Applications that combine isPrivate, isLoopback, and isLinkLocal for a trust-boundary decision can treat an internal IPv4 destination encoded through that range as external. Exploitation depends on a server network using an operator-selected NAT64 prefix within the local-use range. A successful bypass can cross the intended network trust boundary. This issue is fixed in version 10.5.1.",
+                "markdown": "**Vulnerability CVE-2026-101910**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ip-address|10.5.1|[CVE-2026-101910](https://avd.aquasec.com/nvd/cve-2026-101910)|\n\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. From 10.2.0 until 10.5.1, the Address6 isPrivate classifier in src/ipv6.ts does not recognize the NAT64 local-use range 64:ff9b:1::/48. Applications that combine isPrivate, isLoopback, and isLinkLocal for a trust-boundary decision can treat an internal IPv4 destination encoded through that range as external. Exploitation depends on a server network using an operator-selected NAT64 prefix within the local-use range. A successful bypass can cross the intended network trust boundary. This issue is fixed in version 10.5.1."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.9,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:H/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-101911",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ip-address: ip-address: Denial of Service via unbounded IPv6 address parsing"
+              },
+              "fullDescription": {
+                "text": "ip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.7.1, the Address6 constructor, Address6.isValid, and parse code in src/ipv6.ts accept unbounded strings and expand invalid characters through RE_BAD_CHARACTERS into large diagnostics. Material impact occurs only when an application accepts a very large attacker-controlled field and passes it to Address6 parsing without an earlier length bound. Common URL and header limits, and common body-parser defaults, generally constrain the effect; common defaults typically exclude 32 MiB fields. Megabyte-scale fields can cause a synchronous stall and high transient memory use, approximately 16 MiB can trigger an invalid string length exception, and process termination occurs at approximately 32 MiB. The affected entry points include Address6.isValid and construction paths that reach parse. This issue is fixed in version 10.7.1."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-101911",
+              "help": {
+                "text": "Vulnerability CVE-2026-101911\nSeverity: MEDIUM\nPackage: ip-address\nFixed Version: 10.7.1\nLink: [CVE-2026-101911](https://avd.aquasec.com/nvd/cve-2026-101911)\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.7.1, the Address6 constructor, Address6.isValid, and parse code in src/ipv6.ts accept unbounded strings and expand invalid characters through RE_BAD_CHARACTERS into large diagnostics. Material impact occurs only when an application accepts a very large attacker-controlled field and passes it to Address6 parsing without an earlier length bound. Common URL and header limits, and common body-parser defaults, generally constrain the effect; common defaults typically exclude 32 MiB fields. Megabyte-scale fields can cause a synchronous stall and high transient memory use, approximately 16 MiB can trigger an invalid string length exception, and process termination occurs at approximately 32 MiB. The affected entry points include Address6.isValid and construction paths that reach parse. This issue is fixed in version 10.7.1.",
+                "markdown": "**Vulnerability CVE-2026-101911**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ip-address|10.7.1|[CVE-2026-101911](https://avd.aquasec.com/nvd/cve-2026-101911)|\n\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.7.1, the Address6 constructor, Address6.isValid, and parse code in src/ipv6.ts accept unbounded strings and expand invalid characters through RE_BAD_CHARACTERS into large diagnostics. Material impact occurs only when an application accepts a very large attacker-controlled field and passes it to Address6 parsing without an earlier length bound. Common URL and header limits, and common body-parser defaults, generally constrain the effect; common defaults typically exclude 32 MiB fields. Megabyte-scale fields can cause a synchronous stall and high transient memory use, approximately 16 MiB can trigger an invalid string length exception, and process termination occurs at approximately 32 MiB. The affected entry points include Address6.isValid and construction paths that reach parse. This issue is fixed in version 10.7.1."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.3,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-101912",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ip-address: ip-address: Access control bypass via cross-family subnet comparison"
+              },
+              "fullDescription": {
+                "text": "ip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.7.1, the isInSubnet and isHostInSubnet methods in src/common.ts compare masked binary strings without validating that both operands use the same IP family. A cross-family containment check whose leading address bits match makes the masked strings compare equal even though IPv4 and IPv6 do not share an address space. An allowlist or denylist decision can therefore classify an address outside the intended range as contained. This issue is fixed in version 10.7.1."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-101912",
+              "help": {
+                "text": "Vulnerability CVE-2026-101912\nSeverity: MEDIUM\nPackage: ip-address\nFixed Version: 10.7.1\nLink: [CVE-2026-101912](https://avd.aquasec.com/nvd/cve-2026-101912)\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.7.1, the isInSubnet and isHostInSubnet methods in src/common.ts compare masked binary strings without validating that both operands use the same IP family. A cross-family containment check whose leading address bits match makes the masked strings compare equal even though IPv4 and IPv6 do not share an address space. An allowlist or denylist decision can therefore classify an address outside the intended range as contained. This issue is fixed in version 10.7.1.",
+                "markdown": "**Vulnerability CVE-2026-101912**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ip-address|10.7.1|[CVE-2026-101912](https://avd.aquasec.com/nvd/cve-2026-101912)|\n\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.7.1, the isInSubnet and isHostInSubnet methods in src/common.ts compare masked binary strings without validating that both operands use the same IP family. A cross-family containment check whose leading address bits match makes the masked strings compare equal even though IPv4 and IPv6 do not share an address space. An allowlist or denylist decision can therefore classify an address outside the intended range as contained. This issue is fixed in version 10.7.1."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.3,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:L/VA:N/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-101913",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ip-address: ip-address: Security bypass via incomplete IPv6 link-local address validation"
+              },
+              "fullDescription": {
+                "text": "ip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.5.1, the Address6 isLinkLocal method in src/ipv6.ts recognizes only fe80::/64 instead of the complete fe80::/10 IPv6 link-local range. An attacker-controlled address elsewhere in fe80::/10 can therefore pass a trust-boundary check that relies on isLinkLocal. The same address is identified as link-local by getType and getScope, exposing the inconsistent classification. A successful bypass can reach an on-link host outside the intended trust boundary. This issue is fixed in version 10.5.1."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-101913",
+              "help": {
+                "text": "Vulnerability CVE-2026-101913\nSeverity: MEDIUM\nPackage: ip-address\nFixed Version: 10.5.1\nLink: [CVE-2026-101913](https://avd.aquasec.com/nvd/cve-2026-101913)\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.5.1, the Address6 isLinkLocal method in src/ipv6.ts recognizes only fe80::/64 instead of the complete fe80::/10 IPv6 link-local range. An attacker-controlled address elsewhere in fe80::/10 can therefore pass a trust-boundary check that relies on isLinkLocal. The same address is identified as link-local by getType and getScope, exposing the inconsistent classification. A successful bypass can reach an on-link host outside the intended trust boundary. This issue is fixed in version 10.5.1.",
+                "markdown": "**Vulnerability CVE-2026-101913**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ip-address|10.5.1|[CVE-2026-101913](https://avd.aquasec.com/nvd/cve-2026-101913)|\n\nip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.5.1, the Address6 isLinkLocal method in src/ipv6.ts recognizes only fe80::/64 instead of the complete fe80::/10 IPv6 link-local range. An attacker-controlled address elsewhere in fe80::/10 can therefore pass a trust-boundary check that relies on isLinkLocal. The same address is identified as link-local by getType and getScope, exposing the inconsistent classification. A successful bypass can reach an on-link host outside the intended trust boundary. This issue is fixed in version 10.5.1."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.3,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:L/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-111997",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ip-address: ip-address: Denial of Service via excessive percent characters in IPv6 address input"
+              },
+              "fullDescription": {
+                "text": "ip-address before 10.7.4 allows a denial of service (CPU consumption from quadratic complexity, and application stall) via many % characters in input reaching a function call that uses the Address6 constructor."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-111997",
+              "help": {
+                "text": "Vulnerability CVE-2026-111997\nSeverity: MEDIUM\nPackage: ip-address\nFixed Version: 10.7.4\nLink: [CVE-2026-111997](https://avd.aquasec.com/nvd/cve-2026-111997)\nip-address before 10.7.4 allows a denial of service (CPU consumption from quadratic complexity, and application stall) via many % characters in input reaching a function call that uses the Address6 constructor.",
+                "markdown": "**Vulnerability CVE-2026-111997**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ip-address|10.7.4|[CVE-2026-111997](https://avd.aquasec.com/nvd/cve-2026-111997)|\n\nip-address before 10.7.4 allows a denial of service (CPU consumption from quadratic complexity, and application stall) via many % characters in input reaching a function call that uses the Address6 constructor."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.3,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-118764",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "minimatch: minimatch: Denial of Service via crafted glob pattern expansion"
+              },
+              "fullDescription": {
+                "text": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to 11.0.1, src/index.ts implements firstPhasePreProcess() so that, at optimizationLevel 2 or higher, it repeatedly expands attacker-controlled **/.. pattern segments inside a fixpoint loop, allowing generated globParts entries to be processed and expanded again. secondPhasePreProcess() then compares the expanded entries pairwise, so a short malicious glob can cause excessive CPU and memory consumption during pattern compilation. This issue is fixed in version 11.0.1."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-118764",
+              "help": {
+                "text": "Vulnerability CVE-2026-118764\nSeverity: MEDIUM\nPackage: minimatch\nFixed Version: 11.0.1\nLink: [CVE-2026-118764](https://avd.aquasec.com/nvd/cve-2026-118764)\nminimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to 11.0.1, src/index.ts implements firstPhasePreProcess() so that, at optimizationLevel 2 or higher, it repeatedly expands attacker-controlled **/.. pattern segments inside a fixpoint loop, allowing generated globParts entries to be processed and expanded again. secondPhasePreProcess() then compares the expanded entries pairwise, so a short malicious glob can cause excessive CPU and memory consumption during pattern compilation. This issue is fixed in version 11.0.1.",
+                "markdown": "**Vulnerability CVE-2026-118764**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|minimatch|11.0.1|[CVE-2026-118764](https://avd.aquasec.com/nvd/cve-2026-118764)|\n\nminimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to 11.0.1, src/index.ts implements firstPhasePreProcess() so that, at optimizationLevel 2 or higher, it repeatedly expands attacker-controlled **/.. pattern segments inside a fixpoint loop, allowing generated globParts entries to be processed and expanded again. secondPhasePreProcess() then compares the expanded entries pairwise, so a short malicious glob can cause excessive CPU and memory consumption during pattern compilation. This issue is fixed in version 11.0.1."
+              },
+              "properties": {
+                "cvssv40_baseScore": 6.9,
+                "cvssv40_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:L/SC:N/SI:N/SA:N",
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-104844",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "postcss-selector-parser: postcss-selector-parser: Denial of Service via crafted CSS selectors"
+              },
+              "fullDescription": {
+                "text": "PostCSS Selector Parser is a CSS selector parser that integrates with PostCSS but does not require it. Prior to 7.1.6, src/parser.js splitWord() can receive a flat selector as one word token carrying many class or ID indexes because period and hash characters are not tokenizer word delimiters. The uniqs() deduplication and per-index class and ID membership checks repeatedly scan the class and ID index arrays, while a separate Sass-interpolation filtering pass also performs repeated linear scanning. Together, these passes make parsing quadratic in the number of indexes and allow a crafted selector to occupy a synchronous parser thread. The maxNestingDepth guard does not mitigate the issue because the hostile selector can have zero nesting depth. Only consumers that synchronously parse untrusted selectors in an exposed request path are affected; ordinary build-time parsing of trusted sources is not affected. This issue is fixed in version 7.1.6."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-104844",
+              "help": {
+                "text": "Vulnerability CVE-2026-104844\nSeverity: MEDIUM\nPackage: postcss-selector-parser\nFixed Version: 7.1.6, 6.1.5\nLink: [CVE-2026-104844](https://avd.aquasec.com/nvd/cve-2026-104844)\nPostCSS Selector Parser is a CSS selector parser that integrates with PostCSS but does not require it. Prior to 7.1.6, src/parser.js splitWord() can receive a flat selector as one word token carrying many class or ID indexes because period and hash characters are not tokenizer word delimiters. The uniqs() deduplication and per-index class and ID membership checks repeatedly scan the class and ID index arrays, while a separate Sass-interpolation filtering pass also performs repeated linear scanning. Together, these passes make parsing quadratic in the number of indexes and allow a crafted selector to occupy a synchronous parser thread. The maxNestingDepth guard does not mitigate the issue because the hostile selector can have zero nesting depth. Only consumers that synchronously parse untrusted selectors in an exposed request path are affected; ordinary build-time parsing of trusted sources is not affected. This issue is fixed in version 7.1.6.",
+                "markdown": "**Vulnerability CVE-2026-104844**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|postcss-selector-parser|7.1.6, 6.1.5|[CVE-2026-104844](https://avd.aquasec.com/nvd/cve-2026-104844)|\n\nPostCSS Selector Parser is a CSS selector parser that integrates with PostCSS but does not require it. Prior to 7.1.6, src/parser.js splitWord() can receive a flat selector as one word token carrying many class or ID indexes because period and hash characters are not tokenizer word delimiters. The uniqs() deduplication and per-index class and ID membership checks repeatedly scan the class and ID index arrays, while a separate Sass-interpolation filtering pass also performs repeated linear scanning. Together, these passes make parsing quadratic in the number of indexes and allow a crafted selector to occupy a synchronous parser thread. The maxNestingDepth guard does not mitigate the issue because the hostile selector can have zero nesting depth. Only consumers that synchronously parse untrusted selectors in an exposed request path are affected; ordinary build-time parsing of trusted sources is not affected. This issue is fixed in version 7.1.6."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.9,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-109383",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Certificate validation bypass via dropped TLS options in Agent"
+              },
+              "fullDescription": {
+                "text": "undici is an HTTP client library for Node.js. In versions 4.0.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its Agent dispatcher passes its constructor options through a JSON-based deep clone before forwarding them to each per-origin pool, and because JSON cannot represent functions, a caller-supplied tls option containing a checkServerIdentity callback is silently dropped before it reaches the TLS layer. As a result, a TLS peer whose certificate a custom checkServerIdentity was written to reject, but which passes Node's default hostname and chain checks, is silently accepted. Because Agent is the default dispatcher behind request, fetch, and setGlobalDispatcher, this affects the path most applications use, and EnvHttpProxyAgent is affected on its direct and no-proxy routes as well, while only applications that pass a function-valued tls option such as a custom checkServerIdentity for certificate or public-key pinning are at risk. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which preserve the tls option outside the JSON clone so custom verification callbacks are forwarded unchanged, and users should upgrade to one of those versions or later. As a workaround, pass the TLS options through connect instead of tls, or for proxied destinations use requestTls and proxyTls."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-109383",
+              "help": {
+                "text": "Vulnerability CVE-2026-109383\nSeverity: HIGH\nPackage: undici\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109383](https://avd.aquasec.com/nvd/cve-2026-109383)\nundici is an HTTP client library for Node.js. In versions 4.0.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its Agent dispatcher passes its constructor options through a JSON-based deep clone before forwarding them to each per-origin pool, and because JSON cannot represent functions, a caller-supplied tls option containing a checkServerIdentity callback is silently dropped before it reaches the TLS layer. As a result, a TLS peer whose certificate a custom checkServerIdentity was written to reject, but which passes Node's default hostname and chain checks, is silently accepted. Because Agent is the default dispatcher behind request, fetch, and setGlobalDispatcher, this affects the path most applications use, and EnvHttpProxyAgent is affected on its direct and no-proxy routes as well, while only applications that pass a function-valued tls option such as a custom checkServerIdentity for certificate or public-key pinning are at risk. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which preserve the tls option outside the JSON clone so custom verification callbacks are forwarded unchanged, and users should upgrade to one of those versions or later. As a workaround, pass the TLS options through connect instead of tls, or for proxied destinations use requestTls and proxyTls.",
+                "markdown": "**Vulnerability CVE-2026-109383**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|undici|6.29.1, 7.30.1, 8.12.2|[CVE-2026-109383](https://avd.aquasec.com/nvd/cve-2026-109383)|\n\nundici is an HTTP client library for Node.js. In versions 4.0.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its Agent dispatcher passes its constructor options through a JSON-based deep clone before forwarding them to each per-origin pool, and because JSON cannot represent functions, a caller-supplied tls option containing a checkServerIdentity callback is silently dropped before it reaches the TLS layer. As a result, a TLS peer whose certificate a custom checkServerIdentity was written to reject, but which passes Node's default hostname and chain checks, is silently accepted. Because Agent is the default dispatcher behind request, fetch, and setGlobalDispatcher, this affects the path most applications use, and EnvHttpProxyAgent is affected on its direct and no-proxy routes as well, while only applications that pass a function-valued tls option such as a custom checkServerIdentity for certificate or public-key pinning are at risk. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which preserve the tls option outside the JSON clone so custom verification callbacks are forwarded unchanged, and users should upgrade to one of those versions or later. As a workaround, pass the TLS options through connect instead of tls, or for proxied destinations use requestTls and proxyTls."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.4,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "precision": "very-high",
+                "security-severity": "7.4",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-109869",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Denial of Service via unhandled stream error on excessive content encodings"
+              },
+              "fullDescription": {
+                "text": "undici is an HTTP client library for Node.js. In versions 6.23.0 through 6.29.0, 7.18.0 through 7.30.0, and 8.0.0 through 8.12.1, its fetch() implementation crashes the Node.js process when a malicious server returns a response with more than five content codings and closes the connection before sending the body. undici rejects such responses because of a content-encoding limit, but it created the internal response stream before that check and returned without attaching an error listener or aborting the request, so the early close surfaces a content-length mismatch on the orphaned stream, which Node.js treats as an unhandled error and terminates the process. A remote, unauthenticated server can trigger this with a single response, even when the application correctly catches the fetch() rejection, resulting in a denial of service. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, and users should upgrade to one of those versions or later. There is no workaround."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-109869",
+              "help": {
+                "text": "Vulnerability CVE-2026-109869\nSeverity: HIGH\nPackage: undici\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109869](https://avd.aquasec.com/nvd/cve-2026-109869)\nundici is an HTTP client library for Node.js. In versions 6.23.0 through 6.29.0, 7.18.0 through 7.30.0, and 8.0.0 through 8.12.1, its fetch() implementation crashes the Node.js process when a malicious server returns a response with more than five content codings and closes the connection before sending the body. undici rejects such responses because of a content-encoding limit, but it created the internal response stream before that check and returned without attaching an error listener or aborting the request, so the early close surfaces a content-length mismatch on the orphaned stream, which Node.js treats as an unhandled error and terminates the process. A remote, unauthenticated server can trigger this with a single response, even when the application correctly catches the fetch() rejection, resulting in a denial of service. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, and users should upgrade to one of those versions or later. There is no workaround.",
+                "markdown": "**Vulnerability CVE-2026-109869**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|undici|6.29.1, 7.30.1, 8.12.2|[CVE-2026-109869](https://avd.aquasec.com/nvd/cve-2026-109869)|\n\nundici is an HTTP client library for Node.js. In versions 6.23.0 through 6.29.0, 7.18.0 through 7.30.0, and 8.0.0 through 8.12.1, its fetch() implementation crashes the Node.js process when a malicious server returns a response with more than five content codings and closes the connection before sending the body. undici rejects such responses because of a content-encoding limit, but it created the internal response stream before that check and returned without attaching an error listener or aborting the request, so the early close surfaces a content-length mismatch on the orphaned stream, which Node.js treats as an unhandled error and terminates the process. A remote, unauthenticated server can trigger this with a single response, even when the application correctly catches the fetch() rejection, resulting in a denial of service. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, and users should upgrade to one of those versions or later. There is no workaround."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-19534",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Denial of Service via unrequested WebSocket subprotocol"
+              },
+              "fullDescription": {
+                "text": "undici's WebSocket client crashes the whole Node.js process during the opening handshake when a server responds with a subprotocol that the client never requested. A default WebSocket connection sends no subprotocol, but if the server's 101 response includes a Sec-WebSocket-Protocol header, undici dereferences a null value while checking it against the requested list and throws an uncaught TypeError. Because that code runs inside a microtask with no surrounding error handling, the exception propagates and terminates the process under Node's default behavior, instead of gracefully failing the connection as required by the WebSocket protocol. Any application that opens a WebSocket to an attacker-controlled or compromised server, or over a plaintext connection subject to a machine-in-the-middle, can be crashed remotely without authentication in the default configuration. This affects undici versions from 6.7.0 up to 6.28.1, from 7.0.0 up to 7.29.1, and from 8.0.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-19534",
+              "help": {
+                "text": "Vulnerability CVE-2026-19534\nSeverity: HIGH\nPackage: undici\nFixed Version: 6.28.1, 7.29.1, 8.10.2\nLink: [CVE-2026-19534](https://avd.aquasec.com/nvd/cve-2026-19534)\nundici's WebSocket client crashes the whole Node.js process during the opening handshake when a server responds with a subprotocol that the client never requested. A default WebSocket connection sends no subprotocol, but if the server's 101 response includes a Sec-WebSocket-Protocol header, undici dereferences a null value while checking it against the requested list and throws an uncaught TypeError. Because that code runs inside a microtask with no surrounding error handling, the exception propagates and terminates the process under Node's default behavior, instead of gracefully failing the connection as required by the WebSocket protocol. Any application that opens a WebSocket to an attacker-controlled or compromised server, or over a plaintext connection subject to a machine-in-the-middle, can be crashed remotely without authentication in the default configuration. This affects undici versions from 6.7.0 up to 6.28.1, from 7.0.0 up to 7.29.1, and from 8.0.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2.",
+                "markdown": "**Vulnerability CVE-2026-19534**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|undici|6.28.1, 7.29.1, 8.10.2|[CVE-2026-19534](https://avd.aquasec.com/nvd/cve-2026-19534)|\n\nundici's WebSocket client crashes the whole Node.js process during the opening handshake when a server responds with a subprotocol that the client never requested. A default WebSocket connection sends no subprotocol, but if the server's 101 response includes a Sec-WebSocket-Protocol header, undici dereferences a null value while checking it against the requested list and throws an uncaught TypeError. Because that code runs inside a microtask with no surrounding error handling, the exception propagates and terminates the process under Node's default behavior, instead of gracefully failing the connection as required by the WebSocket protocol. Any application that opens a WebSocket to an attacker-controlled or compromised server, or over a plaintext connection subject to a machine-in-the-middle, can be crashed remotely without authentication in the default configuration. This affects undici versions from 6.7.0 up to 6.28.1, from 7.0.0 up to 7.29.1, and from 8.0.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-87018",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Denial of Service via TLS renegotiation with mismatched certificate"
+              },
+              "fullDescription": {
+                "text": "undici is an HTTP client library for Node.js. In versions 4.2.1 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, the client process crashes when a TLS 1.2 server renegotiates after the connection is established and presents a different, CA-trusted certificate whose hostname does not match the requested host. Node.js re-runs hostname verification on the renegotiated handshake and destroys the socket with a certificate-altname error, but undici's established-socket error handler asserted that this error code could never occur, so the peer-controlled error became an uncaught assertion that terminates the Node.js process, affecting both the HTTP/1.1 and HTTP/2 paths. A malicious or compromised HTTPS endpoint reached through undici or the global fetch() can crash the client with a single server-initiated renegotiation, taking down all in-flight requests and background work in the process, and exploitation needs no CA compromise because the attacker controls the endpoint and can present two ordinary valid certificates. Only TLS 1.2 is affected, since TLS 1.3 does not support renegotiation. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, and users should upgrade to one of those versions or later. As a workaround, restrict outbound connections to TLS 1.3 so renegotiation cannot occur, when the target endpoints support it."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-87018",
+              "help": {
+                "text": "Vulnerability CVE-2026-87018\nSeverity: HIGH\nPackage: undici\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-87018](https://avd.aquasec.com/nvd/cve-2026-87018)\nundici is an HTTP client library for Node.js. In versions 4.2.1 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, the client process crashes when a TLS 1.2 server renegotiates after the connection is established and presents a different, CA-trusted certificate whose hostname does not match the requested host. Node.js re-runs hostname verification on the renegotiated handshake and destroys the socket with a certificate-altname error, but undici's established-socket error handler asserted that this error code could never occur, so the peer-controlled error became an uncaught assertion that terminates the Node.js process, affecting both the HTTP/1.1 and HTTP/2 paths. A malicious or compromised HTTPS endpoint reached through undici or the global fetch() can crash the client with a single server-initiated renegotiation, taking down all in-flight requests and background work in the process, and exploitation needs no CA compromise because the attacker controls the endpoint and can present two ordinary valid certificates. Only TLS 1.2 is affected, since TLS 1.3 does not support renegotiation. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, and users should upgrade to one of those versions or later. As a workaround, restrict outbound connections to TLS 1.3 so renegotiation cannot occur, when the target endpoints support it.",
+                "markdown": "**Vulnerability CVE-2026-87018**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|undici|6.29.1, 7.30.1, 8.12.2|[CVE-2026-87018](https://avd.aquasec.com/nvd/cve-2026-87018)|\n\nundici is an HTTP client library for Node.js. In versions 4.2.1 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, the client process crashes when a TLS 1.2 server renegotiates after the connection is established and presents a different, CA-trusted certificate whose hostname does not match the requested host. Node.js re-runs hostname verification on the renegotiated handshake and destroys the socket with a certificate-altname error, but undici's established-socket error handler asserted that this error code could never occur, so the peer-controlled error became an uncaught assertion that terminates the Node.js process, affecting both the HTTP/1.1 and HTTP/2 paths. A malicious or compromised HTTPS endpoint reached through undici or the global fetch() can crash the client with a single server-initiated renegotiation, taking down all in-flight requests and background work in the process, and exploitation needs no CA compromise because the attacker controls the endpoint and can present two ordinary valid certificates. Only TLS 1.2 is affected, since TLS 1.3 does not support renegotiation. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, and users should upgrade to one of those versions or later. As a workaround, restrict outbound connections to TLS 1.3 so renegotiation cannot occur, when the target endpoints support it."
+              },
+              "properties": {
+                "cvssv3_baseScore": 7.5,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-109924",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Denial of Service via memory exhaustion in EventSource client"
+              },
+              "fullDescription": {
+                "text": "undici is an HTTP client library for Node.js. In versions 6.5.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its EventSource client can be driven to exhaust process memory by a malicious or compromised Server-Sent Events peer. By sending millions of tiny completed data fields with no blank event separator, or a single unfinished line split across many chunks, the parser retains a growing amount of per-field and per-chunk state that the byte-based maxEventSize and maxResponseSize limits do not bound, and because maxResponseSize is enforced on the compressed body before decompression, a small compressed response can expand into enough retained memory to terminate the process. An application only needs to maintain an EventSource connection to an untrusted peer, which controls only the response, and availability is the only impact. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which bound the retained parser state independently of the byte limits, and users should upgrade to one of those versions or later. There is no workaround."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-109924",
+              "help": {
+                "text": "Vulnerability CVE-2026-109924\nSeverity: MEDIUM\nPackage: undici\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109924](https://avd.aquasec.com/nvd/cve-2026-109924)\nundici is an HTTP client library for Node.js. In versions 6.5.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its EventSource client can be driven to exhaust process memory by a malicious or compromised Server-Sent Events peer. By sending millions of tiny completed data fields with no blank event separator, or a single unfinished line split across many chunks, the parser retains a growing amount of per-field and per-chunk state that the byte-based maxEventSize and maxResponseSize limits do not bound, and because maxResponseSize is enforced on the compressed body before decompression, a small compressed response can expand into enough retained memory to terminate the process. An application only needs to maintain an EventSource connection to an untrusted peer, which controls only the response, and availability is the only impact. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which bound the retained parser state independently of the byte limits, and users should upgrade to one of those versions or later. There is no workaround.",
+                "markdown": "**Vulnerability CVE-2026-109924**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|undici|6.29.1, 7.30.1, 8.12.2|[CVE-2026-109924](https://avd.aquasec.com/nvd/cve-2026-109924)|\n\nundici is an HTTP client library for Node.js. In versions 6.5.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its EventSource client can be driven to exhaust process memory by a malicious or compromised Server-Sent Events peer. By sending millions of tiny completed data fields with no blank event separator, or a single unfinished line split across many chunks, the parser retains a growing amount of per-field and per-chunk state that the byte-based maxEventSize and maxResponseSize limits do not bound, and because maxResponseSize is enforced on the compressed body before decompression, a small compressed response can expand into enough retained memory to terminate the process. An application only needs to maintain an EventSource connection to an untrusted peer, which controls only the response, and availability is the only impact. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which bound the retained parser state independently of the byte limits, and users should upgrade to one of those versions or later. There is no workaround."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.9,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-109932",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Denial of Service via unbounded WebSocket PONG buffering"
+              },
+              "fullDescription": {
+                "text": "undici is an HTTP client library for Node.js. In versions 5.15.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its WebSocket client, including the bundled WebSocket exposed by Node.js, can be driven to exhaust process memory by a malicious or compromised WebSocket server. For every PING frame received, the client automatically writes a PONG response and ignores the backpressure signal from the socket write, so a server that streams small PING frames while never reading the client's PONGs makes the outbound write queue and heap grow without bound until the Node.js process runs out of memory and terminates. The attack is remote and unauthenticated, needs only a normal WebSocket connection, and is asymmetric, since small inbound PINGs produce a much larger retained outbound queue, with availability the only impact. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which pause WebSocket frame parsing when the automatic PONG response hits socket backpressure and resume on drain, bounding the outbound queue, and users should upgrade to one of those versions or later. There is no workaround."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-109932",
+              "help": {
+                "text": "Vulnerability CVE-2026-109932\nSeverity: MEDIUM\nPackage: undici\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109932](https://avd.aquasec.com/nvd/cve-2026-109932)\nundici is an HTTP client library for Node.js. In versions 5.15.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its WebSocket client, including the bundled WebSocket exposed by Node.js, can be driven to exhaust process memory by a malicious or compromised WebSocket server. For every PING frame received, the client automatically writes a PONG response and ignores the backpressure signal from the socket write, so a server that streams small PING frames while never reading the client's PONGs makes the outbound write queue and heap grow without bound until the Node.js process runs out of memory and terminates. The attack is remote and unauthenticated, needs only a normal WebSocket connection, and is asymmetric, since small inbound PINGs produce a much larger retained outbound queue, with availability the only impact. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which pause WebSocket frame parsing when the automatic PONG response hits socket backpressure and resume on drain, bounding the outbound queue, and users should upgrade to one of those versions or later. There is no workaround.",
+                "markdown": "**Vulnerability CVE-2026-109932**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|undici|6.29.1, 7.30.1, 8.12.2|[CVE-2026-109932](https://avd.aquasec.com/nvd/cve-2026-109932)|\n\nundici is an HTTP client library for Node.js. In versions 5.15.0 through 6.29.0, 7.0.0 through 7.30.0, and 8.0.0 through 8.12.1, its WebSocket client, including the bundled WebSocket exposed by Node.js, can be driven to exhaust process memory by a malicious or compromised WebSocket server. For every PING frame received, the client automatically writes a PONG response and ignores the backpressure signal from the socket write, so a server that streams small PING frames while never reading the client's PONGs makes the outbound write queue and heap grow without bound until the Node.js process runs out of memory and terminates. The attack is remote and unauthenticated, needs only a normal WebSocket connection, and is asymmetric, since small inbound PINGs produce a much larger retained outbound queue, with availability the only impact. The issue is fixed in undici 6.29.1, 7.30.1, and 8.12.2, which pause WebSocket frame parsing when the automatic PONG response hits socket backpressure and resume on drain, bounding the outbound queue, and users should upgrade to one of those versions or later. There is no workaround."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.9,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-85024",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: Denial of Service via unhandled error in WebSocket permessage-deflate decompression"
+              },
+              "fullDescription": {
+                "text": "undici bundles a WebSocket client whose permessage-deflate size-limit cleanup removes all listeners from the internal zlib inflate stream, including its error listener, while that stream can still emit. When a remote peer sends a compressed payload that crosses the built-in 128 MiB decompressed-payload limit and then contains a malformed DEFLATE byte, the inflate stream emits a data error with no listener attached, which Node.js treats as a fatal unhandled error and terminates the entire process. Exploitation is remote and unauthenticated, requires no application mistake, and is asymmetric, since roughly 130 KB on the wire expands past the limit and crashes the process, and reconnecting can repeat the crash. This affects undici versions from 6.25.0 up to 6.28.1, from 7.28.0 up to 7.29.1, and from 8.1.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-85024",
+              "help": {
+                "text": "Vulnerability CVE-2026-85024\nSeverity: MEDIUM\nPackage: undici\nFixed Version: 6.28.1, 7.29.1, 8.10.2\nLink: [CVE-2026-85024](https://avd.aquasec.com/nvd/cve-2026-85024)\nundici bundles a WebSocket client whose permessage-deflate size-limit cleanup removes all listeners from the internal zlib inflate stream, including its error listener, while that stream can still emit. When a remote peer sends a compressed payload that crosses the built-in 128 MiB decompressed-payload limit and then contains a malformed DEFLATE byte, the inflate stream emits a data error with no listener attached, which Node.js treats as a fatal unhandled error and terminates the entire process. Exploitation is remote and unauthenticated, requires no application mistake, and is asymmetric, since roughly 130 KB on the wire expands past the limit and crashes the process, and reconnecting can repeat the crash. This affects undici versions from 6.25.0 up to 6.28.1, from 7.28.0 up to 7.29.1, and from 8.1.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2.",
+                "markdown": "**Vulnerability CVE-2026-85024**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|undici|6.28.1, 7.29.1, 8.10.2|[CVE-2026-85024](https://avd.aquasec.com/nvd/cve-2026-85024)|\n\nundici bundles a WebSocket client whose permessage-deflate size-limit cleanup removes all listeners from the internal zlib inflate stream, including its error listener, while that stream can still emit. When a remote peer sends a compressed payload that crosses the built-in 128 MiB decompressed-payload limit and then contains a malformed DEFLATE byte, the inflate stream emits a data error with no listener attached, which Node.js treats as a fatal unhandled error and terminates the entire process. Exploitation is remote and unauthenticated, requires no application mistake, and is asymmetric, since roughly 130 KB on the wire expands past the limit and crashes the process, and reconnecting can repeat the crash. This affects undici versions from 6.25.0 up to 6.28.1, from 7.28.0 up to 7.29.1, and from 8.1.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2."
+              },
+              "properties": {
+                "cvssv3_baseScore": 5.9,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2026-18540",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "undici: undici: HTTP response splitting via retry interceptor"
+              },
+              "fullDescription": {
+                "text": "undici's retry interceptor can append the body of a ranged retry response to bytes already delivered from an earlier partial response while still presenting the original response's status and headers. This happens when an upstream server delivers part of a body without a trustworthy resume checkpoint, for example a non-success response whose headers were already sent or a partial-content response with an unusable content range, then closes the connection and answers the resumed range request with more bytes. As a result the response body can be longer than the Content-Length that the application observes. An application that relays such a response to a downstream HTTP/1.1 peer without normalizing the framing can emit a body that exceeds the forwarded Content-Length, and the excess bytes can be interpreted as the start of a following response, which enables downstream response splitting or desynchronization. Exploitation requires an attacker-controlled upstream server and an application that forwards the response through a framing-sensitive path. This affects undici versions before 6.28.1, from 7.0.0 up to 7.29.1, and from 8.0.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2026-18540",
+              "help": {
+                "text": "Vulnerability CVE-2026-18540\nSeverity: LOW\nPackage: undici\nFixed Version: 6.28.1, 7.29.1, 8.10.2\nLink: [CVE-2026-18540](https://avd.aquasec.com/nvd/cve-2026-18540)\nundici's retry interceptor can append the body of a ranged retry response to bytes already delivered from an earlier partial response while still presenting the original response's status and headers. This happens when an upstream server delivers part of a body without a trustworthy resume checkpoint, for example a non-success response whose headers were already sent or a partial-content response with an unusable content range, then closes the connection and answers the resumed range request with more bytes. As a result the response body can be longer than the Content-Length that the application observes. An application that relays such a response to a downstream HTTP/1.1 peer without normalizing the framing can emit a body that exceeds the forwarded Content-Length, and the excess bytes can be interpreted as the start of a following response, which enables downstream response splitting or desynchronization. Exploitation requires an attacker-controlled upstream server and an application that forwards the response through a framing-sensitive path. This affects undici versions before 6.28.1, from 7.0.0 up to 7.29.1, and from 8.0.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2.",
+                "markdown": "**Vulnerability CVE-2026-18540**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|undici|6.28.1, 7.29.1, 8.10.2|[CVE-2026-18540](https://avd.aquasec.com/nvd/cve-2026-18540)|\n\nundici's retry interceptor can append the body of a ranged retry response to bytes already delivered from an earlier partial response while still presenting the original response's status and headers. This happens when an upstream server delivers part of a body without a trustworthy resume checkpoint, for example a non-success response whose headers were already sent or a partial-content response with an unusable content range, then closes the connection and answers the resumed range request with more bytes. As a result the response body can be longer than the Content-Length that the application observes. An application that relays such a response to a downstream HTTP/1.1 peer without normalizing the framing can emit a body that exceeds the forwarded Content-Length, and the excess bytes can be interpreted as the start of a following response, which enables downstream response splitting or desynchronization. Exploitation requires an attacker-controlled upstream server and an application that forwards the response through a framing-sensitive path. This affects undici versions before 6.28.1, from 7.0.0 up to 7.29.1, and from 8.0.0 up to 8.10.2. Users should upgrade to undici 6.28.1, 7.29.1, or 8.10.2."
+              },
+              "properties": {
+                "cvssv3_baseScore": 3.7,
+                "cvssv3_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+                "precision": "very-high",
+                "security-severity": "3.7",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            }
+          ],
+          "version": "0.69.3"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2026-102276",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Package: brace-expansion\nInstalled Version: 5.0.9\nVulnerability CVE-2026-102276\nSeverity: HIGH\nFixed Version: 5.0.10, 3.0.7, 2.1.5, 1.1.19\nLink: [CVE-2026-102276](https://avd.aquasec.com/nvd/cve-2026-102276)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json: brace-expansion@5.0.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102278",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "Package: brace-expansion\nInstalled Version: 5.0.9\nVulnerability CVE-2026-102278\nSeverity: HIGH\nFixed Version: 5.0.11, 3.0.8, 2.1.6, 1.1.20\nLink: [CVE-2026-102278](https://avd.aquasec.com/nvd/cve-2026-102278)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json: brace-expansion@5.0.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-102277",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Package: brace-expansion\nInstalled Version: 5.0.9\nVulnerability CVE-2026-102277\nSeverity: MEDIUM\nFixed Version: 5.0.12, 3.0.9, 2.1.7, 1.1.21\nLink: [CVE-2026-102277](https://avd.aquasec.com/nvd/cve-2026-102277)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json: brace-expansion@5.0.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118773",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Package: glob\nInstalled Version: 13.0.6\nVulnerability CVE-2026-118773\nSeverity: MEDIUM\nFixed Version: 14.0.2\nLink: [CVE-2026-118773](https://avd.aquasec.com/nvd/cve-2026-118773)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/glob/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/glob/package.json: glob@13.0.6"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101910",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: ip-address\nInstalled Version: 10.5.0\nVulnerability CVE-2026-101910\nSeverity: MEDIUM\nFixed Version: 10.5.1\nLink: [CVE-2026-101910](https://avd.aquasec.com/nvd/cve-2026-101910)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json: ip-address@10.5.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101911",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Package: ip-address\nInstalled Version: 10.5.0\nVulnerability CVE-2026-101911\nSeverity: MEDIUM\nFixed Version: 10.7.1\nLink: [CVE-2026-101911](https://avd.aquasec.com/nvd/cve-2026-101911)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json: ip-address@10.5.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101912",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: ip-address\nInstalled Version: 10.5.0\nVulnerability CVE-2026-101912\nSeverity: MEDIUM\nFixed Version: 10.7.1\nLink: [CVE-2026-101912](https://avd.aquasec.com/nvd/cve-2026-101912)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json: ip-address@10.5.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-101913",
+          "ruleIndex": 7,
+          "level": "warning",
+          "message": {
+            "text": "Package: ip-address\nInstalled Version: 10.5.0\nVulnerability CVE-2026-101913\nSeverity: MEDIUM\nFixed Version: 10.5.1\nLink: [CVE-2026-101913](https://avd.aquasec.com/nvd/cve-2026-101913)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json: ip-address@10.5.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-111997",
+          "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: ip-address\nInstalled Version: 10.5.0\nVulnerability CVE-2026-111997\nSeverity: MEDIUM\nFixed Version: 10.7.4\nLink: [CVE-2026-111997](https://avd.aquasec.com/nvd/cve-2026-111997)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json: ip-address@10.5.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-118764",
+          "ruleIndex": 9,
+          "level": "warning",
+          "message": {
+            "text": "Package: minimatch\nInstalled Version: 10.2.5\nVulnerability CVE-2026-118764\nSeverity: MEDIUM\nFixed Version: 11.0.1\nLink: [CVE-2026-118764](https://avd.aquasec.com/nvd/cve-2026-118764)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/minimatch/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/minimatch/package.json: minimatch@10.2.5"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-104844",
+          "ruleIndex": 10,
+          "level": "warning",
+          "message": {
+            "text": "Package: postcss-selector-parser\nInstalled Version: 7.1.4\nVulnerability CVE-2026-104844\nSeverity: MEDIUM\nFixed Version: 7.1.6, 6.1.5\nLink: [CVE-2026-104844](https://avd.aquasec.com/nvd/cve-2026-104844)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/postcss-selector-parser/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/postcss-selector-parser/package.json: postcss-selector-parser@7.1.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109383",
+          "ruleIndex": 11,
+          "level": "error",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-109383\nSeverity: HIGH\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109383](https://avd.aquasec.com/nvd/cve-2026-109383)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109869",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-109869\nSeverity: HIGH\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109869](https://avd.aquasec.com/nvd/cve-2026-109869)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-19534",
+          "ruleIndex": 13,
+          "level": "error",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-19534\nSeverity: HIGH\nFixed Version: 6.28.1, 7.29.1, 8.10.2\nLink: [CVE-2026-19534](https://avd.aquasec.com/nvd/cve-2026-19534)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-87018",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-87018\nSeverity: HIGH\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-87018](https://avd.aquasec.com/nvd/cve-2026-87018)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109924",
+          "ruleIndex": 15,
+          "level": "warning",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-109924\nSeverity: MEDIUM\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109924](https://avd.aquasec.com/nvd/cve-2026-109924)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-109932",
+          "ruleIndex": 16,
+          "level": "warning",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-109932\nSeverity: MEDIUM\nFixed Version: 6.29.1, 7.30.1, 8.12.2\nLink: [CVE-2026-109932](https://avd.aquasec.com/nvd/cve-2026-109932)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-85024",
+          "ruleIndex": 17,
+          "level": "warning",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-85024\nSeverity: MEDIUM\nFixed Version: 6.28.1, 7.29.1, 8.10.2\nLink: [CVE-2026-85024](https://avd.aquasec.com/nvd/cve-2026-85024)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2026-18540",
+          "ruleIndex": 18,
+          "level": "note",
+          "message": {
+            "text": "Package: undici\nInstalled Version: 6.28.0\nVulnerability CVE-2026-18540\nSeverity: LOW\nFixed Version: 6.28.1, 7.29.1, 8.10.2\nLink: [CVE-2026-18540](https://avd.aquasec.com/nvd/cve-2026-18540)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "usr/local/lib/node_modules/npm/node_modules/undici/package.json",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "usr/local/lib/node_modules/npm/node_modules/undici/package.json: undici@6.28.0"
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///"
+        }
+      },
+      "properties": {
+        "imageID": "sha256:35797462840d5b6c6ec6bb5838a08eaee36d00bbb048989854978f7812f71131",
+        "imageName": "image.tar",
+        "repoDigests": null,
+        "repoTags": [
+          "peer-review-gateway:ci"
+        ]
+      }
+    }
+  ]
+}
