@@ -7,3 +7,5 @@ coverage/
 
 .DS_Store
 Thumbs.db
+
+.claude/redact.local.json

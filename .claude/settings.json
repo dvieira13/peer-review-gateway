@@ -21,5 +21,18 @@
       "Read(./.env)"
     ]
   },
-  "model": "claude-opus-5-5"
+  "model": "claude-opus-5-5",
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/log-session.mjs\" --hook",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
 }
