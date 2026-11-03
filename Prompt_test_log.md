@@ -34,5 +34,8 @@ The GitHub Actions run <url> failed at step <name> with this log: <paste>. Diagn
 ## Commit trail
 | Commit | Label | Notes |
 |---|---|---|
-| `<sha>` | AI AGENT BUILD: Works endpoints | |
-| `<sha>` | HUMAN MOD: Fix header weights | |
+| `d1ec33b` | HUMAN MOD: Import Assignment 1 scaffold (AI-drafted in claude.ai chat) | |
+| `5af8e6d` | HUMAN MOD: Pin model and document agent environment | |
+| `369adfa` | HUMAN MOD: Align Node 24 types/engines, clarify /health in spec, regenerate lockfile | |
+| `2aee3eb` | AI AGENT BUILD: Works endpoints (GET /works, GET /works/:id) | |
+| `40931fc` | HUMAN MOD: Correct source headers (100% AI from claude.ai chat) and add tool lines | |
