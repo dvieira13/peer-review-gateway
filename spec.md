@@ -70,7 +70,7 @@ All bodies are JSON. Errors use `{"error":{"code","message","details?"}}` with c
 
 | # | Method & path | Purpose | Success |
 |---|---|---|---|
-| 1 | `GET /health` | Liveness | 200 |
+| 1 | `GET /health` (unversioned, outside `/api/v1`) | Liveness | 200 |
 | 2 | `GET /users/me` | Current mock user | 200 |
 | 3 | `POST /rubrics` | Create rubric with criteria | 201 |
 | 4 | `GET /rubrics` | List rubrics (`?page&pageSize`) | 200 |
