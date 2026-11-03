@@ -11,9 +11,9 @@ cat > Agent_environment.md <<'EOF'
 | Item | Value |
 |---|---|
 | Tool | Claude Code |
-| Version | 2.1.316 for all agent tests in this assignment (Test 1 and Test 2). The tool auto-updated to 2.1.317 afterwards. |
+| Version | 2.1.317 for Test 1 and Test 2, verified from the `version` field in the saved transcripts. An earlier setup session (permission and model checks, before the tests) ran on 2.1.316. The tool auto-updates. |
 | Install method | Native installer (`curl -fsSL https://claude.ai/install.sh \| bash`) |
-| Interface | Interactive terminal CLI in the VS Code integrated terminal; VS Code extension connected (2.1.316) |
+| Interface | Interactive terminal CLI in the VS Code integrated terminal; VS Code extension connected (extension 2.1.316 when checked with `/status` before the tests) |
 
 ## 2. Operational mode
 | Item | Value |
