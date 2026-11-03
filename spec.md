@@ -1,10 +1,10 @@
 # spec.md - Peer Review & Evaluation Gateway (Domain 3)
 
 ## AI Usage Log (required on first page)
-- **Conceptual AI contribution:** [__]% AI / [__]% human  <- fill in honestly
-- **Tool(s):** <e.g. Claude chat (claude.ai) for drafting this spec; Claude Code for implementation>
-- **Chat link / exported appendix:** <paste share link or attach export>
-- **Design-aid prompts used:** <paste the exact prompts>
+- **Conceptual AI contribution:** [95]% AI / [5]% human. AI drafted the specification; I chose the domain and tech stack and reviewed it.
+- **Tool(s):** Claude (claude.ai chat), Claude Sonnet 5.5. Claude Code was not used for this document.
+- **Chat link:** https://claude.ai/share/5cf09fd2-4fdb-4649-999a-a7676f35bd22
+- **Design-aid prompts used:** my initial prompt was "help me with assignment 1 for my project. im going to do domain 3 -" with the project description attached; my choices were Node.js / TypeScript and Claude Code. All later prompts are in the linked chat.
 
 ---
 

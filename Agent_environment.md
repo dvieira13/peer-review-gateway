@@ -1,11 +1,10 @@
-cat > Agent_environment.md <<'EOF'
 # Agent_environment.md - Autonomous Developer Agent Configuration
 
 ## AI Usage Log (required on first page)
-- **Conceptual AI contribution:** [__]% AI / [__]% human
-- **Tool(s):** Claude (claude.ai chat) for the initial draft of this document; values below were collected by me from my own machine and from session transcripts.
-- **Chat link / exported appendix:** <share link>
-- **Design-aid prompts used:** my messages in the linked chat
+- **Conceptual AI contribution:** [80]% AI / [20]% human. AI wrote the structure and wording; I collected and verified the real values from my machine and my session transcripts, and found the version and permission-mode corrections.
+- **Tool(s):** Claude (claude.ai chat), Claude Sonnet 5.5. The agent being documented is Claude Code 2.1.317 (claude-opus-5-5).
+- **Chat link:** https://claude.ai/share/5cf09fd2-4fdb-4649-999a-a7676f35bd22
+- **Design-aid prompts used:** my setup and follow-up messages in the linked chat, including the Phase 4 configuration steps and my later checks of /status, permission mode, MCP servers and transcript facts.
 
 ## 1. Agent
 | Item | Value |
@@ -48,15 +47,28 @@ cat > Agent_environment.md <<'EOF'
 | Second machine | A Windows laptop will be added here when set up. All agent runs so far in this assignment were on the Mac. |
 
 ## 5. Repository and pipeline context
-- Repo: REPO_URL_PLACEHOLDER
+- Repo: https://github.com/dvieira13/peer-review-gateway
 - Workflow: `.github/workflows/devsecops.yml` (Trivy, Semgrep, SonarQube)
 - Logging convention: source headers carry the AI Contribution Weight; commits are `AI AGENT BUILD: ...` or `HUMAN MOD: ...`; interactions are logged in `code_AI_history.md`; session transcripts are in `ai-history/` (email, name, and home path redacted).
 
 ## Appendix A - CLAUDE.md contents
-EOF
-sed -i '' "s#REPO_URL_PLACEHOLDER#$(gh repo view --json url -q .url)#" Agent_environment.md
-printf '```\n' >> Agent_environment.md
-cat CLAUDE.md >> Agent_environment.md
-printf '\n```\n' >> Agent_environment.md
-grep -n "PLACEHOLDER\|Repo:" Agent_environment.md
-tail -5 Agent_environment.md
+```
+# Project: Peer Review & Evaluation Gateway (CS763 Domain 3)
+
+Single-tenant REST service. Node 24, TypeScript (strict), Express 5, PostgreSQL 17, Vitest + Supertest. The functional spec is `spec.md` - treat it as the source of truth.
+
+## Commands
+- Typecheck: `npm run typecheck`
+- Test: `npm test`
+- Build: `npm run build`
+- Run locally: `docker compose up --build`
+
+## Rules
+- Every source file starts with a header comment: `AI Contribution Weight: [NN%] AI Generated / [NN%] Human Refactored`, plus file purpose and AI tool.
+- Do NOT run `git commit` or `git push`. The human commits manually with labels `AI AGENT BUILD: <feature>` or `HUMAN MOD: <feature>`.
+- Do not modify `.github/workflows/devsecops.yml`. Security scanners must stay non-blocking.
+- No cross-service calls. External data (users, works) comes only from static mock files in `src/data/`.
+- Never put secrets, tokens, or real credentials in code, config, or logs.
+- After code changes, run typecheck, tests, and build, and report the results.
+- Keep changes minimal and scoped to what was asked; list every file you created or changed.
+```

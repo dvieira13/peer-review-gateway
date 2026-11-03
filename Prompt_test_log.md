@@ -1,8 +1,10 @@
 # Prompt_test_log.md - Initial Prompts & Generated Code
 
 ## AI Usage Log (required on first page)
-- **Conceptual AI contribution:** [__]% AI / [__]% human
-- **Tool(s) / chat link / prompts:** <fill in>
+- **Conceptual AI contribution:** [85]% AI / [15]% human. AI wrote the test prompts, the transcript-extraction script and draft verification wording; Claude Code produced the agent outputs; I ran the tests, reviewed the diffs and accepted the results.
+- **Tool(s):** Claude (claude.ai chat), Claude Sonnet 5.5, and Claude Code 2.1.317 (claude-opus-5-5) for the agent tests.
+- **Chat link:** https://claude.ai/share/5cf09fd2-4fdb-4649-999a-a7676f35bd22
+- **Design-aid prompts used:** the two Claude Code test prompts are quoted in this file; my other prompts are in the linked chat.
 
 Purpose: show the autonomous agent works in this environment. Run each prompt in Claude Code from the repo root, then paste the *actual* prompt, the agent's summary, the files it touched, and your verification result.
 
