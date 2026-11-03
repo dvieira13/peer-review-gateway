@@ -153,7 +153,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -167,10 +166,10 @@ jobs:
       - name: SonarQube scan (non-blocking)
         if: env.SONAR_TOKEN != ''
         continue-on-error: true
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v7
       - name: Skipped notice
         if: env.SONAR_TOKEN == ''
-        run: echo "::notice::SONAR_TOKEN not set - add SONAR_TOKEN (and SONAR_HOST_URL for self-hosted) repo secrets."
+        run: echo "::notice::SONAR_TOKEN not set - add it as a repository secret (gh secret set SONAR_TOKEN)."
 
   report:
     name: Pipeline telemetry summary
