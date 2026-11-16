@@ -1,18 +1,18 @@
-# Project: Peer Review & Evaluation Gateway (CS763 Domain 3)
+# Project: Peer Review & Evaluation Gateway (CS763 Domain 3) - Assignment 2
 
-Single-tenant REST service. Node 24, TypeScript (strict), Express 5, PostgreSQL 17, Vitest + Supertest. The functional spec is `spec.md` - treat it as the source of truth.
+Single-tenant REST service. Node 24, TypeScript, Express 5, PostgreSQL 17, Vitest + Supertest.
+The only source of requirements is `assignment-2/master-spec.md`. All new code goes in `assignment-2/functional-codebase/`.
 
-## Commands
+## Commands (run inside assignment-2/functional-codebase)
 - Typecheck: `npm run typecheck`
 - Test: `npm test`
 - Build: `npm run build`
 - Run locally: `docker compose up --build`
 
 ## Rules
-- Every source file starts with a header comment: `AI Contribution Weight: [NN%] AI Generated / [NN%] Human Refactored`, plus file purpose and AI tool.
-- Do NOT run `git commit` or `git push`. The human commits manually with labels `AI AGENT BUILD: <feature>` or `HUMAN MOD: <feature>`.
-- Do not modify `.github/workflows/devsecops.yml`. Security scanners must stay non-blocking.
-- No cross-service calls. External data (users, works) comes only from static mock files in `src/data/`.
-- Never put secrets, tokens, or real credentials in code, config, or logs.
+- Every source and test file starts with a header comment with these fields: Tool, Prompt Summary, AI Contribution (percent), Human Modifications, Verification, Confidence.
+- Do NOT run `git commit` or `git push`. The human commits manually.
+- Do not modify `.github/workflows/devsecops.yml`.
+- No cross-service calls. External data (users, projects, courses, labs) comes only from static mock files.
 - After code changes, run typecheck, tests, and build, and report the results.
-- Keep changes minimal and scoped to what was asked; list every file you created or changed.
+- Keep changes scoped to what was asked; list every file you created or changed.
