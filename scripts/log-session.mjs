@@ -2,7 +2,8 @@
 // AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
 // AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-02
 // File: scripts/log-session.mjs
-// Copies a Claude Code session transcript into ai-history/ with personal data redacted,
+// 2026-11-16: output folder changed from ai-history/ to assignment-2/.ai_logs/ for Assignment 2 (change drafted in claude.ai chat, applied by me)
+// Copies a Claude Code session transcript into assignment-2/.ai_logs/ with personal data redacted,
 // and prints facts about a session. Deterministic (no AI), never commits, fails closed.
 //
 // Usage:
@@ -15,7 +16,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
 const repo = path.resolve(process.env.CLAUDE_PROJECT_DIR || process.cwd());
-const outDir = path.join(repo, 'ai-history');
+const outDir = path.join(repo, process.env.AI_LOG_DIR || path.join('assignment-2', '.ai_logs'));
 const args = process.argv.slice(2);
 const has = (n) => args.includes(n);
 const opt = (n) => {
@@ -141,7 +142,7 @@ try {
       all.sort((a, b) => fs.statSync(path.join(outDir, b)).mtimeMs - fs.statSync(path.join(outDir, a)).mtimeMs);
       file = all[0] && path.join(outDir, all[0]);
     }
-    if (!file) throw new Error('no transcript found in ai-history/');
+    if (!file) throw new Error(`no transcript found in ${path.relative(repo, outDir)}/`);
     console.log(JSON.stringify({ file: path.relative(repo, path.resolve(file)), ...factsOf(parseLines(fs.readFileSync(file, 'utf8'))) }, null, 2));
   } else {
     let payload = {};
