@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/log-session.mjs\" --hook",
+            "command": "node scripts/log-session.mjs --hook",
             "timeout": 15
           }
         ]
