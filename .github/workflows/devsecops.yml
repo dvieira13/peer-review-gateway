@@ -1,14 +1,21 @@
-# AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
-# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
-# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
-# DevSecOps pipeline: build/test -> Docker build -> Trivy (deps + image) -> Semgrep -> SonarQube.
-# All security scanners are NON-BLOCKING in Assignment 1 (continue-on-error / exit-code 0).
+# Tool: Claude (claude.ai chat, Claude Sonnet 5.5), adapted from the Assignment 1 pipeline, 2026-11-16
+# Prompt Summary: Point the A1 DevSecOps pipeline at assignment-2/functional-codebase and pin every action to a full commit SHA
+# AI Contribution: 90% (AI wrote the YAML; human chose non-blocking scanners and full-SHA pinning)
+# Human Modifications: [to be filled in by the author after review]
+# Verification: YAML parsed locally; action SHAs resolved with git ls-remote; pipeline run result recorded in code_AI_history.md
+# Confidence: [to be filled in by the author]
 #
-# SUPPLY-CHAIN NOTE: in March 2026 the aquasecurity/trivy-action version tags were hijacked
-# (CVE-2026-33634). This workflow therefore does NOT use that action. It runs the official
-# Trivy container at v0.69.3 (a known-safe release). Pin it by digest once you look one up:
-#   docker pull aquasec/trivy:0.69.3 && docker inspect --format '{{index .RepoDigests 0}}' aquasec/trivy:0.69.3
-# Also pin the third-party actions below to full commit SHAs (Dependabot can maintain them).
+# DevSecOps pipeline: build/test -> Docker build -> Trivy (deps + image) -> Semgrep -> SonarQube.
+# All security scanners are NON-BLOCKING in Assignment 2 (continue-on-error / exit-code 0),
+# because the naive baseline is expected to contain findings that we triage, not hide.
+#
+# SUPPLY-CHAIN NOTES
+# 1. In March 2026 the aquasecurity/trivy-action version tags were hijacked (CVE-2026-33634).
+#    This workflow therefore does NOT use that action. It runs the official Trivy container.
+# 2. Every third-party action below is pinned to a full commit SHA, with the tag it came from in a
+#    comment. A tag can be moved to different code; a SHA cannot.
+#    Re-check a pin:  git ls-remote https://github.com/<owner>/<repo>.git refs/tags/<tag> 'refs/tags/<tag>^{}'
+#    (for annotated tags, the commit SHA is the line ending in ^{}).
 name: devsecops
 
 on:
@@ -24,17 +31,22 @@ permissions:
 env:
   TRIVY_IMAGE: aquasec/trivy:0.69.3
   IMAGE_NAME: peer-review-gateway:ci
+  APP_DIR: assignment-2/functional-codebase
 
 jobs:
   build-test:
     name: Build & test
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: assignment-2/functional-codebase
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24
           cache: npm
+          cache-dependency-path: assignment-2/functional-codebase/package-lock.json
       - run: npm ci
       - run: npm run typecheck
       - run: npm run test:coverage
@@ -42,13 +54,13 @@ jobs:
       - name: npm audit (non-blocking)
         continue-on-error: true
         run: npm audit --audit-level=high --json > npm-audit.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: build-test-telemetry
           path: |
-            npm-audit.json
-            coverage/lcov.info
+            assignment-2/functional-codebase/npm-audit.json
+            assignment-2/functional-codebase/coverage/lcov.info
 
   docker-build:
     name: Docker build & Trivy image scan
@@ -58,12 +70,12 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
       - name: Build image (multi-stage)
-        run: docker build --target runtime -t "$IMAGE_NAME" .
+        run: docker build --target runtime -t "$IMAGE_NAME" "$APP_DIR"
       - name: Validate compose file
-        run: docker compose config -q
+        run: docker compose -f "$APP_DIR/docker-compose.yml" config -q
       - name: Smoke test container
         run: |
           docker run -d --name smoke -p 3000:3000 "$IMAGE_NAME"
@@ -77,13 +89,13 @@ jobs:
           docker run --rm --user "$(id -u):$(id -g)" -e TRIVY_CACHE_DIR=/tmp/trivy \
             -v "$PWD":/work -w /work "$TRIVY_IMAGE" image --input image.tar \
             --format sarif --output trivy-image.sarif --exit-code 0
-      - uses: github/codeql-action/upload-sarif@v4
+      - uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         if: always() && hashFiles('trivy-image.sarif') != ''
         continue-on-error: true
         with:
           sarif_file: trivy-image.sarif
           category: trivy-image
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: trivy-image-telemetry
@@ -96,21 +108,21 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Trivy filesystem scan (non-blocking)
         continue-on-error: true
         run: |
           docker run --rm --user "$(id -u):$(id -g)" -e TRIVY_CACHE_DIR=/tmp/trivy \
             -v "$PWD":/work -w /work "$TRIVY_IMAGE" fs \
             --scanners vuln,secret,misconfig \
-            --format sarif --output trivy-fs.sarif --exit-code 0 .
-      - uses: github/codeql-action/upload-sarif@v4
+            --format sarif --output trivy-fs.sarif --exit-code 0 "$APP_DIR"
+      - uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         if: always() && hashFiles('trivy-fs.sarif') != ''
         continue-on-error: true
         with:
           sarif_file: trivy-fs.sarif
           category: trivy-fs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: trivy-fs-telemetry
@@ -123,8 +135,8 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.12'
       - run: pip install semgrep
@@ -133,14 +145,15 @@ jobs:
         run: |
           semgrep scan --metrics=off \
             --config p/default --config p/typescript --config p/nodejs --config p/owasp-top-ten \
-            --sarif-output=semgrep.sarif --json-output=semgrep.json src test
-      - uses: github/codeql-action/upload-sarif@v4
+            --sarif-output=semgrep.sarif --json-output=semgrep.json \
+            "$APP_DIR/src" "$APP_DIR/test"
+      - uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
         if: always() && hashFiles('semgrep.sarif') != ''
         continue-on-error: true
         with:
           sarif_file: semgrep.sarif
           category: semgrep
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
           name: semgrep-telemetry
@@ -154,19 +167,24 @@ jobs:
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24
           cache: npm
+          cache-dependency-path: assignment-2/functional-codebase/package-lock.json
       - run: npm ci
+        working-directory: assignment-2/functional-codebase
       - run: npm run test:coverage
+        working-directory: assignment-2/functional-codebase
       - name: SonarQube scan (non-blocking)
         if: env.SONAR_TOKEN != ''
         continue-on-error: true
-        uses: SonarSource/sonarqube-scan-action@v7
+        uses: SonarSource/sonarqube-scan-action@c7ee0f9df90b7aa20e8dcf9695dcfe2e7da5b4f2 # v7
+        with:
+          projectBaseDir: assignment-2/functional-codebase
       - name: Skipped notice
         if: env.SONAR_TOKEN == ''
         run: echo "::notice::SONAR_TOKEN not set - add it as a repository secret (gh secret set SONAR_TOKEN)."
@@ -177,7 +195,7 @@ jobs:
     if: always()
     needs: [build-test, docker-build, trivy-deps, semgrep, sonarqube]
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
         with:
           path: telemetry
       - name: Summarize findings
