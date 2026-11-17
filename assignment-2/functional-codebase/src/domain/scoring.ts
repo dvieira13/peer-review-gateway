@@ -2,9 +2,9 @@
  * Tool: Claude Code (claude-opus-5-5), 2026-11-16
  * Prompt Summary: Build the Domain 3 Peer Review & Evaluation Gateway from master-spec.md; this file computes weighted review percentages and the per-role aggregate blocks (mean, std dev, distribution, grade-point trend).
  * AI Contribution: 100%
- * Human Modifications: [to be filled in by the author]
- * Verification: typecheck, Vitest suite and build run by Claude Code on 2026-11-16; covered by test/scoring.test.ts and the summary/report tests
- * Confidence: [to be filled in by the author]
+ * Human Modifications: None. Committed unedited as the naive baseline (commit aedffac).
+ * Verification: typecheck, Vitest suite and build run by Claude Code on 2026-11-16; covered by test/scoring.test.ts and the summary/report tests; Author ran the stack in Docker Compose and exercised the endpoints with curl (checks 8a to 8j); CI run #34 passed.
+ * Confidence: Medium. Typecheck, tests and the author's curl checks pass, but the code is naive and the author has not reviewed every line.
  */
 import type { CriterionScore, Review, ReviewerRole, Rubric } from './types';
 

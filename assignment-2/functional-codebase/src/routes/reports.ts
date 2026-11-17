@@ -2,9 +2,9 @@
  * Tool: Claude Code (claude-opus-5-5), 2026-11-16
  * Prompt Summary: Build the Domain 3 Peer Review & Evaluation Gateway from master-spec.md; this file holds GET /api/v1/evaluations/reports, one consolidated JSON report per course or lab (decision 8) with section, min-score and sort filters.
  * AI Contribution: 100%
- * Human Modifications: [to be filled in by the author]
- * Verification: typecheck, Vitest suite and build run by Claude Code on 2026-11-16; covered by test/reports.test.ts
- * Confidence: [to be filled in by the author]
+ * Human Modifications: None. Committed unedited as the naive baseline (commit aedffac).
+ * Verification: typecheck, Vitest suite and build run by Claude Code on 2026-11-16; covered by test/reports.test.ts; Author ran the stack in Docker Compose and exercised the endpoints with curl (checks 8a to 8j); CI run #34 passed.
+ * Confidence: Medium overall. High that the findings in this file (V1 to V4 in the triage report) are real, because the author reproduced them with curl.
  */
 import { Router } from 'express';
 import { badRequest, notFound } from '../errors';

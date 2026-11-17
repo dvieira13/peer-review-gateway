@@ -1,7 +1,10 @@
 # syntax=docker/dockerfile:1
-# AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
-# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
-# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
+# Tool: Claude (claude.ai chat, Claude Sonnet 5.5), 2026-11-01, carried over from the Assignment 1 stack
+# Prompt Summary: Multi-stage Node 24 Docker build with a non-root runtime image for the gateway.
+# AI Contribution: 100%
+# Human Modifications: Carried over from the Assignment 1 Dockerfile; the header was reformatted to the Assignment 2 fields.
+# Verification: Built and run with Docker Compose by the author (smoke test); the image was scanned by Trivy in CI run #34.
+# Confidence: Medium. It builds and runs as a non-root user, but the base image is not pinned by digest (see the TODO below).
 # Multi-stage build: deps -> build -> prod-deps -> runtime (non-root, minimal)
 # TODO(hardening): pin base image by digest (node:22-alpine@sha256:...)
 

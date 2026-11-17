@@ -2,9 +2,9 @@
  * Tool: Claude Code (claude-opus-5-5), 2026-11-16
  * Prompt Summary: Build the Domain 3 Peer Review & Evaluation Gateway from master-spec.md; this file holds the shared test helpers (app with a fresh in-memory store, sample rubric, review builders).
  * AI Contribution: 100%
- * Human Modifications: [to be filled in by the author]
- * Verification: used by every integration test, which Claude Code ran on 2026-11-16
- * Confidence: [to be filled in by the author]
+ * Human Modifications: None. Committed unedited as the naive baseline (commit aedffac).
+ * Verification: used by every integration test, which Claude Code ran on 2026-11-16; CI run #34 ran this suite and it passed.
+ * Confidence: Medium. Typecheck, tests and the author's curl checks pass, but the code is naive and the author has not reviewed every line.
  */
 import request from 'supertest';
 import { expect } from 'vitest';

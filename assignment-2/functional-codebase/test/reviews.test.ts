@@ -2,9 +2,9 @@
  * Tool: Claude Code (claude-opus-5-5), 2026-11-16
  * Prompt Summary: Build the Domain 3 Peer Review & Evaluation Gateway from master-spec.md; this file tests the review endpoints end to end (faculty and peer submission, anonymity, verification constraints, min-grade filter, update and delete).
  * AI Contribution: 100%
- * Human Modifications: [to be filled in by the author]
- * Verification: run by Claude Code with npm test on 2026-11-16
- * Confidence: [to be filled in by the author]
+ * Human Modifications: None. Committed unedited as the naive baseline (commit aedffac).
+ * Verification: run by Claude Code with npm test on 2026-11-16; CI run #34 ran this suite and it passed.
+ * Confidence: Medium. Typecheck, tests and the author's curl checks pass, but the code is naive and the author has not reviewed every line.
  */
 import request from 'supertest';
 import { beforeEach, describe, expect, it } from 'vitest';

@@ -1,5 +1,9 @@
-# AI Contribution Weight: [100%] AI Generated / [0%] Human Refactored
-# AI tool: Claude (claude.ai chat, Claude Sonnet 5.5) 2026-11-01
+# Tool: Claude (claude.ai chat, Claude Sonnet 5.5), 2026-11-01, carried over from the Assignment 1 stack
+# Prompt Summary: Two-service stack (the gateway on port 3000 and PostgreSQL 17) with local-dev-only credentials.
+# AI Contribution: 100%
+# Human Modifications: Carried over from the Assignment 1 compose file; the header was reformatted to the Assignment 2 fields.
+# Verification: Run by the author with docker compose up; the API was exercised with curl (checks 8a to 8j).
+# Confidence: Medium. It works for local testing, but it publishes only port 3000 and its credentials are placeholders for local use.
 # Single-tenant stack for Domain 3 (no cross-service communication).
 # The credentials below are LOCAL DEV ONLY placeholders.
 services:

@@ -1,9 +1,9 @@
 # Tool: Claude (claude.ai chat, Claude Sonnet 5.5), adapted from the Assignment 1 pipeline, 2026-11-16
 # Prompt Summary: Point the A1 DevSecOps pipeline at assignment-2/functional-codebase and pin every action to a full commit SHA
 # AI Contribution: 90% (AI wrote the YAML; human chose non-blocking scanners and full-SHA pinning)
-# Human Modifications: [to be filled in by the author after review]
+# Human Modifications: Chose non-blocking scanners and full-SHA pinning; spot-checked the pinned SHAs; caught an empty workflow file with git diff before committing.
 # Verification: YAML parsed locally; action SHAs resolved with git ls-remote; pipeline run result recorded in code_AI_history.md
-# Confidence: [to be filled in by the author]
+# Confidence: Medium. The pipeline ran end to end (CI run #34) and the author triaged its output, but the Trivy container and the Semgrep install are not pinned by digest.
 #
 # DevSecOps pipeline: build/test -> Docker build -> Trivy (deps + image) -> Semgrep -> SonarQube.
 # All security scanners are NON-BLOCKING in Assignment 2 (continue-on-error / exit-code 0),
