@@ -14,7 +14,7 @@
 
 ## 1. Scope and assumptions
 
-**Target.** The naive baseline of the Domain 3 Peer Review & Evaluation Gateway, `assignment-2/functional-codebase/` (Node/TypeScript, Express 5, PostgreSQL 17, Docker Compose). The `src/` and `test/` directories are unchanged since the baseline commit `aedffac`. The analysis builds on the four validated vulnerabilities V1 to V4 in `assignment-2/sast-triage-report.md`.
+**Target.** The naive baseline of the Domain 3 Peer Review & Evaluation Gateway, `assignment-2/functional-codebase/` (Node/TypeScript, Express 5, PostgreSQL 17, Docker Compose). The `src/` and `test/` directories are unchanged (apart from the header comments added in commit `979115b`) since the baseline commit `aedffac`. The analysis builds on the four validated vulnerabilities V1 to V4 in `assignment-2/sast-triage-report.md`.
 
 **Roles.** `faculty_instructor`, `student_peer`, and an unauthenticated caller.
 
