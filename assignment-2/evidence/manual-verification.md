@@ -28,6 +28,7 @@
 | 8e | Delete someone else's review with no identity | 204, then 404, faculty count 0 | 204, 404, `review_count` 0 and 1 | Yes |
 | 8f | Weights of `1e308` | Case A: 201 with score 0. Case B: 500 | 201 with `overall_score: 0`; 500 with `NaN` rejected by DB `CHECK` | Yes |
 | 8g | Does the error log expose a peer's identity? | 500, log shows `stu_004` | 500, log shows `stu_004, student_peer` | Yes |
+| 8h | Is a rubric that a project is bound to locked against update and delete? | 409 on both | 409 on PUT and 409 on DELETE | Yes |
 
 ---
 
@@ -234,11 +235,39 @@ app-1  |   detail: 'Failing row contains (04b206e6-d64b-41d7-aa4e-771b6f339006, 
 
 ---
 
+## 8h. A rubric bound to a project cannot be modified or deleted
+
+This check was run on a fresh stack (the previous one had been torn down), so the rubric id differs from earlier checks. It confirms a consequence stated in V1 of the triage report: a rubric created with no credentials binds its project and cannot be changed or removed afterwards.
+
+**Prediction (stated in chat before the run):** `R=` prints a rubric id; the PUT returns HTTP 409 with a message that the rubric is in use and cannot be modified; the DELETE returns HTTP 409 with a message that it cannot be deleted.
+
+**Commands:**
+
+```
+OUT=$(curl -s -X POST localhost:3000/api/v1/evaluations/rubrics -H "Content-Type: application/json" -d '{"name":"R1","project_id":"proj_101","sections":[{"title":"S1","criteria":[{"description":"c1","weight":1,"max_points":10}]}]}')
+R=$(echo "$OUT" | grep -o '"id":"[^"]*"' | sed -n 1p | cut -d'"' -f4)
+echo "R=$R"
+curl -s -w "\nHTTP %{http_code}\n" -X PUT localhost:3000/api/v1/evaluations/rubrics/$R -H "Content-Type: application/json" -d '{"name":"changed","project_id":"proj_101","sections":[{"title":"S1","criteria":[{"description":"c1","weight":1,"max_points":10}]}]}'
+curl -s -w "\nHTTP %{http_code}\n" -X DELETE localhost:3000/api/v1/evaluations/rubrics/$R
+```
+
+**Observed** (the Docker build, start-up and teardown output around these commands is omitted):
+
+```
+R=43f30557-f3d2-45c6-adae-0af77694b92c
+{"error":{"code":"conflict","message":"Rubric is in use by at least one project and cannot be modified"}}
+HTTP 409
+{"error":{"code":"conflict","message":"Rubric is in use by at least one project and cannot be deleted"}}
+HTTP 409
+```
+
+---
+
 ## What these checks show
 
 | Finding | Checks | Scanner detected it? |
 |---|---|---|
-| V1: no authentication; identity is whatever the request body claims | 8a, 8b | No (Semgrep 0 findings; SonarQube 0 vulnerabilities and 0 security hotspots) |
+| V1: no authentication; identity is whatever the request body claims | 8a, 8b, 8h | No (Semgrep 0 findings; SonarQube 0 vulnerabilities and 0 security hotspots) |
 | V2: no ownership check on review update and delete | 8c, 8e | No |
 | V3: peer anonymity broken through error responses | 8d | No |
 | V4: unbounded weights lead to wrong grades, 500 errors and an anonymous reviewer's identity in the log | 8f, 8g | No |
