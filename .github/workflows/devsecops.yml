@@ -76,12 +76,12 @@ jobs:
         run: docker build --target runtime -t "$IMAGE_NAME" "$APP_DIR"
       - name: Validate compose file
         run: docker compose -f "$APP_DIR/docker-compose.yml" config -q
-      - name: Smoke test container
+      - name: Smoke test full stack (app + PostgreSQL)
         run: |
-          docker run -d --name smoke -p 3000:3000 "$IMAGE_NAME"
-          for i in $(seq 1 15); do curl -fs localhost:3000/health && break || sleep 2; done
+          docker compose -f "$APP_DIR/docker-compose.yml" up -d --build --wait --wait-timeout 120 \
+            || { docker compose -f "$APP_DIR/docker-compose.yml" logs; exit 1; }
           curl -fs localhost:3000/health
-          docker rm -f smoke
+          docker compose -f "$APP_DIR/docker-compose.yml" down -v
       - name: Trivy image scan (non-blocking)
         continue-on-error: true
         run: |
