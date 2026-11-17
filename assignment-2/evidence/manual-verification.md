@@ -4,10 +4,10 @@
 
 - **Tool:** Claude (claude.ai chat, Claude Sonnet 5.5), 2026-11-16
 - **Prompt Summary:** The chat proposed each check, stated a prediction before the author ran it, and helped interpret the results. The author ran every command in their own terminal.
-- **AI Contribution:** [to be filled in by the author]
-- **Human Modifications:** [to be filled in by the author]
+- **AI Contribution:** 90% (the AI drafted the check plan, commands and write-up; I ran every command and the outputs are my own results)
+- **Human Modifications:** I ran checks 8a to 8j myself against the Docker Compose stack, pasted the outputs verbatim, and confirmed each result against the prediction.
 - **Verification:** Every output block below is copied verbatim from the author's terminal as pasted into the chat. Nothing was re-run or edited by the AI. Predictions were stated in the chat before each run. For check 8a the prediction was not also saved in a file; it exists only in the chat.
-- **Confidence:** [to be filled in by the author]
+- **Confidence:** High. Every result is real command output from my own run.
 
 ## Environment
 
